@@ -12,8 +12,38 @@
 
 #define TIMEOUT 300
 
-/ {
+&middle_left_encoder {
+    status = "okay";
+};
 
+&top_right_encoder {
+    status = "okay";
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_btclr {
+            timeout-ms = <TIMEOUT>;
+            key-positions = <0 4>;
+            bindings = <&bt BT_CLR>;
+        };
+        combo_reset {
+            timeout-ms = <TIMEOUT>;
+            key-positions = <0 2>;
+            bindings = <&sys_reset>;
+        };
+        combo_bootloader {
+            timeout-ms = <TIMEOUT>;
+            key-positions = <0 1>;
+            bindings = <&bootloader>;
+        };
+        combo_bt_nxt {
+            timeout-ms = <TIMEOUT>;
+            key-positions = <0 3>;
+            bindings = <&bt BT_NXT>;
+        };
+    };
 
     keymap: keymap {
         compatible = "zmk,keymap";
@@ -41,7 +71,22 @@
             &kp KP_N0 &trans &kp KP_DOT &kp KP_ENTER
             >;
 
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+
         };
 
+        fn_layer {
+            display-name = "fn";
+            bindings = <
+                &out OUT_TOG        &bt BT_PRV          &bt BT_NXT      &rgb_ug RGB_EFF
+                &rgb_ug RGB_HUD     &rgb_ug RGB_SPI     &rgb_ug RGB_HUI &trans
+                &bt BT_CLR          &rgb_ug RGB_EFR     &rgb_ug RGB_TOG &trans
+                &rgb_ug RGB_BRD     &rgb_ug RGB_SPD     &rgb_ug RGB_BRI &trans
+                &kp DEL             &rgb_ug RGB_SAD     &rgb_ug RGB_SAI &trans
+                &trans              &trans              &trans          &trans
+            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
+
+        };
     };
 };
