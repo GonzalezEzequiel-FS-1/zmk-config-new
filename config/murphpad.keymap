@@ -52,8 +52,8 @@
             display-name = "default";
             bindings = <
 
-            /* Top row F1 F2 F3 and F4 */
-            &kp F1 &kp F2 &kp F3 &kp F4
+            /* Top row F1 F2 F3 and function */
+            &kp F1 &kp F2 &kp F3 &mo fn_layer
 
             /* Second Row num divide multiply and minus */
             &kp KP_NUM &kp KP_DIVIDE &kp KP_MULTIPLY &kp KP_MINUS
